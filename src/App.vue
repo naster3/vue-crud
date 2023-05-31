@@ -1,15 +1,14 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+   <tarea />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import tarea from './components/Tarea'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+     tarea
   }
 }
 </script>
@@ -21,6 +20,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 </style>
