@@ -1,4 +1,4 @@
-# prueba
+# vue-crud
 
 ## Project setup
 ```
@@ -7,6 +7,8 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
+
+cd vue-crud
 npm run serve
 ```
 
