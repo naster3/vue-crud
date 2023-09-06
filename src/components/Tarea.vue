@@ -3,7 +3,7 @@
     <h1 class="display-4 text-center">Listado de personas</h1>
     <hr />
     <div class="row">
-      <div class="col-lg-8 offset-lg-2">
+      <div class="col-lg-10 offset-lg-1">
         <div class="card mt-4">
           <div class="card-body">
             <div class="input-group">
@@ -19,20 +19,36 @@
                 class="form-control form-control-lg"
                 placeholder="Agregar apellido "
               />
+              <input
+                type="number"
+                v-model="edad"
+                class="form-control form-control-lg"
+                placeholder="Agregar edad "
+              />
+              <input
+                type="text"
+                v-model="telefono"
+                class="form-control form-control-lg"
+                placeholder="Agregar telefono "
+              />
               <div class="input-group-append">
                 <button
                   v-if="!cambio" v-on:click="agregarTarea"
                   class="btn btn-success btn-lg">
                   Agregar
                 </button>
-                <button v-else v-on:click=" actualizardatos(tarea,id_persona)" class="btn btn-success btn-lg">Editar Dato</button>
+                <button v-else v-on:click=" actualizardatos(tarea,id_persona)" class="btn btn-success btn-lg">
+                  Editar Dato</button>
               </div>
+              
               <div>
                 <button
-                   v-on:click="limpiar"
+                v-if="!cambio" v-on:click="limpiar"
                   class="btn btn-success btn-lg">
                   limpiar
                 </button>
+                
+                <button v-else v-on:click="limpiar" class="btn btn-success btn-lg">cancelar</button>
               </div>
             </div>
             <br />
@@ -64,9 +80,15 @@
  
                   ></i>
                 </span>
-               
+                <hr/>
                 {{ tarea.nombre }}
+                <hr/>
                 {{ tarea.apellido }}
+                <hr/>
+                {{ tarea.edad }}
+                <hr/>
+                {{ tarea.telefono }}
+                <hr/>
                 <span
                   class="text-danger cursor"
                   v-on:click="eliminarTarea(tarea.id_persona)"
@@ -85,14 +107,16 @@
 
 <script>
 import axios from "axios";
-const URL = "https://localhost:44327/api/persona";
-const URLID="https://localhost:44327/api/persona/";
+const URL = "https://localhost:5001/api/persona";
+const URLID="https://localhost:5001/api/persona/";
 export default {
   name: "tarea-item",
   data() {
     return {
       tarea: "",
       apellido:"",
+      edad:0,
+      telefono:"",
       listTareas: [],
       loading: false,
      // cambio: false,
@@ -104,6 +128,8 @@ export default {
        
         nombre: this.tarea,
         apellido:this.apellido,
+        edad:this.edad,
+        telefono:this.telefono,
         estado:this.estado,
       };
       /*  this.listTareas.push(tarea); */
@@ -139,6 +165,8 @@ export default {
         this.id_persona= tarea.id_persona;
         this.tarea= tarea.nombre;
         this.apellido= tarea.apellido;
+        this.edad=tarea.edad;
+        this.telefono=tarea.telefono;
 
    
     },
@@ -153,7 +181,7 @@ export default {
    
     },
     limpiar(){
-     this.tarea='';this.apellido='';
+     this.tarea='';this.apellido='';this.edad=0;this.telefono=''
      
 
   
